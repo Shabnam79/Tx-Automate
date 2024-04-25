@@ -40,3 +40,10 @@ pipeline:
                       echo "$zipfilename"
                     outputVariables:
                       - name: zipfilename
+              - step:
+                  type: Run
+                  name: Run_2
+                  identifier: Run_2
+                  spec:
+                    shell: Sh
+                    command: echo "<+stage.variables.output>"
