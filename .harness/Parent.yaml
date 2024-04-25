@@ -38,9 +38,3 @@ pipeline:
                       zip -r published_artifacts.zip ./published
                       export ZipFileName=$(find . -name '*.zip')
                       echo "$ZipFileName"
-        variables:
-          - name: ZipFileName
-            type: String
-            description: ""
-            required: false
-            value: <+input>
