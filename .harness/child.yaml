@@ -31,8 +31,9 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
-                    shell: Sh
+                    shell: Bash
                     command: echo "<+stage.variables.output>"
+                    privileged: false
         variables:
           - name: output
             type: String
