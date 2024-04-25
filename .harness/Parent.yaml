@@ -50,6 +50,6 @@ pipeline:
         variables:
           - name: output
             type: String
-            description: <+pipeline.stages.Build.spec.execution.steps.Build_Dot_Net.output.outputVariables.zipfilename>
+            description: ""
             required: false
-            value: ""
+            value: <+pipeline.stages.Build.spec.execution.steps.Build_Dot_Net.output.outputVariables.zipfilename>
