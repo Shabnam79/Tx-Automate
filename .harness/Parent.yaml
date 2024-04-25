@@ -47,3 +47,9 @@ pipeline:
                   spec:
                     shell: Sh
                     command: echo "<+stage.variables.output>"
+        variables:
+          - name: output
+            type: String
+            description: <+pipeline.stages.Build.spec.execution.steps.Build_Dot_Net.output.outputVariables.zipfilename>
+            required: false
+            value: ""
