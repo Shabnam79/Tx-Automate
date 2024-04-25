@@ -1,0 +1,39 @@
+pipeline:
+  name: Parent
+  identifier: Parent
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: TXAutomate
+        repoName: Tx-Automate
+        build: <+input>
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Build_Dot_Net
+                  identifier: Build_Dot_Net
+                  spec:
+                    shell: Sh
+                    command: |-
+                      dotnet build MyAppT/MyAppT.csproj
+                      dotnet publish --configuration Release --output ./published
+                      zip -r published_artifacts.zip ./published
+                      export ZipFileName=$(find . -name '*.zip')
