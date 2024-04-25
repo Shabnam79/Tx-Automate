@@ -36,39 +36,7 @@ pipeline:
                       dotnet build MyAppT/MyAppT.csproj
                       dotnet publish --configuration Release --output ./published
                       zip -r published_artifacts.zip ./published
-                      export ZipFileName=$(find . -name '*.zip')
-                      echo "$ZipFileName"
+                      export zipfilename=$(find . -name '*.zip')
+                      echo "$zipfilename"
                     outputVariables:
-                      - name: ZipFileName
-    - stage:
-        name: Sending_Input_Child
-        identifier: Sending_Input_Child
-        description: ""
-        type: Pipeline
-        spec:
-          org: default
-          pipeline: Child
-          project: default_project
-          inputs:
-            identifier: Child
-            variables:
-              - name: zipfilename
-                type: String
-                value: <+input>
-            stages:
-              - stage:
-                  identifier: Deploy_ZIP
-                  type: Deployment
-                  spec:
-                    service:
-                      serviceInputs:
-                        serviceDefinition:
-                          type: WinRm
-                          spec:
-                            artifacts:
-                              primary:
-                                primaryArtifactRef: <+input>
-                                sources: <+input>
-          outputs:
-            - name: zipfilename
-              value: <+pipeline.variables.zipfilename>
+                      - name: zipfilename
