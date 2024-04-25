@@ -46,7 +46,7 @@ pipeline:
                   identifier: Run_2
                   spec:
                     shell: Sh
-                    command: echo "<+pipeline.stages.Build.spec.execution.steps.Build_Dot_Net.output.outputVariables.zipfilename>"
+                    command: echo "<+stage.variables.output>"
         variables:
           - name: output
             type: String
