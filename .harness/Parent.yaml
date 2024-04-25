@@ -37,6 +37,7 @@ pipeline:
                       dotnet publish --configuration Release --output ./published
                       zip -r published_artifacts.zip ./published
                       export ZipFileName=$(find . -name '*.zip')
+                      echo "$ZipFileName"
         variables:
           - name: ZipFileName
             type: String
